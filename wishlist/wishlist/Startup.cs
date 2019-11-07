@@ -5,16 +5,53 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using whishlist;
+using wishlist.models.Identity;
 
 namespace wishlist
 {
     public class Startup
     {
+        private IConfiguration configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            {
+                services.AddDbContext<ApplicationDbContext>(build =>
+                {
+                    build.UseMySql(configuration.GetConnectionString("AzureConnection"));
+                });
+                // Automatically perform database migration
+                services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
+            }
+            else
+            {
+                services.AddDbContext<ApplicationDbContext>(build =>
+                {
+                    build.UseMySql(configuration.GetConnectionString("DefaultConnection"));
+                });
+            }
+            services.AddMvc();
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "878629613299-5h3qgsic9d4bi8vq1ctuki2146u7qhf0.apps.googleusercontent.com";
+                    options.ClientSecret = "7_zykgr08DESNJqMmQc8j8PF";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -23,12 +60,16 @@ namespace wishlist
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
-
-            app.Run(async (context) =>
+            else
             {
-                await context.Response.WriteAsync("Hello World!");
-            });
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+            }
+            app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
