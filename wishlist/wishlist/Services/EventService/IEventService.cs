@@ -7,6 +7,8 @@ namespace wishlist.Services.EventService
 {
     public interface IEventService
     {
-        Task<List<Event>> FindEventsByUserAsync(ClaimsPrincipal user);
+        Task<Event> GetEventByIdAsync(long eventId);
+        Task<bool> ValidateAccessAsync(long eventId, ClaimsPrincipal user);
+        Task<List<Event>> FindEventsByManagerNameOrEmailAsync(string managerName);
     }
 }
