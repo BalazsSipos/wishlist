@@ -24,18 +24,33 @@ namespace wishlist.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add(long id)
+        public async Task<IActionResult> AddWithUrl(long id)
         {
             if (!await eventService.ValidateAccessAsync(id, User))
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
-            AddGiftWithDataRequest addGiftRequest = new AddGiftWithDataRequest()
+            AddGiftWithUrlRequest addGiftWithUrlRequest = new AddGiftWithUrlRequest()
             {
                 EventId = id
             };
-            return View(addGiftRequest);
+            return View(addGiftWithUrlRequest);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddWithData(long id)
+        {
+            if (!await eventService.ValidateAccessAsync(id, User))
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+
+            AddGiftWithDataRequest addGiftWithDataRequest = new AddGiftWithDataRequest()
+            {
+                EventId = id
+            };
+            return View(addGiftWithDataRequest);
         }
 
         [HttpPost]

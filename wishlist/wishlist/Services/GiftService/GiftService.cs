@@ -68,14 +68,19 @@ namespace wishlist.Services.GiftService
             try
             {
                 gift.Name = pageDocument.DocumentNode.SelectSingleNode("(//div[contains(@class,'product-details')]//h1)").InnerText.Trim();
-                gift.Price = Int32.Parse(pageDocument.DocumentNode.SelectSingleNode("(//span[contains(@itemprop,'lowPrice')])").Attributes["content"].Value);
+                var priceString = pageDocument.DocumentNode.SelectSingleNode("(//span[contains(@itemprop,'lowPrice')])").Attributes["content"].Value;
+                gift.Price = Int32.Parse(priceString.Substring(0, priceString.IndexOf(".")));
                 gift.PhotoUrl = pageDocument.DocumentNode.SelectSingleNode("(/html[1]/body[1]/div[1]/div[2]/div[2]/div[1]/a[1]/img[1])").Attributes["src"].Value;
                 gift.Quantity = addGiftWithUrlRequest.Quantity;
+                gift.Event = await applicationDbContext.Events.Include(e => e.Gifts).Include(e => e.Invitations)
+                            .FirstOrDefaultAsync(e => e.EventId == addGiftWithUrlRequest.EventId);
+                gift.GiftUrl = addGiftWithUrlRequest.GiftUrl;
                 await applicationDbContext.Gifts.AddAsync(gift);
                 await applicationDbContext.SaveChangesAsync();
             }
-            catch
+            catch (Exception e)
             {
+                var a = e.Message;
                 throw new InvalidOperationException("Cannot parse url or cannot save to DB. Is that a url from arukereso.hu?");
             }
         }
