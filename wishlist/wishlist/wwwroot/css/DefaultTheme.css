@@ -1,0 +1,26 @@
+﻿html, body {
+    background: gray url(../img/backgroundImg/Default_Background.jpg) repeat 0 0;
+    width: auto;
+    margin: 0;
+    text-align: center;
+    height: auto;
+    box-sizing: border-box;
+    -webkit-animation: slide 20s linear infinite;
+}
+
+
+
+.hero-bkg-animated h1 {
+    font-family: sans-serif;
+}
+
+@-webkit-keyframes slide {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -200px 0;
+    }
+}
+
