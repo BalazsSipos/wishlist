@@ -50,8 +50,8 @@ namespace wishlist
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "878629613299-5h3qgsic9d4bi8vq1ctuki2146u7qhf0.apps.googleusercontent.com";
-                    options.ClientSecret = "7_zykgr08DESNJqMmQc8j8PF";
+                    options.ClientId = "111294217428-tjdmd0tb6uo4rq0fdn64jkskbp89f7na.apps.googleusercontent.com";
+                    options.ClientSecret = "yJ0vP6rfV1j9V_WWW61pduHQ";
                 });
 
             services.AddTransient<IBlobStorageService, BlobStorageService>();
