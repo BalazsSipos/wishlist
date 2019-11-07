@@ -1,6 +1,14 @@
 @model List<Event>
 
-<h1>Events</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Events</h1> 
+}
+else
+{
+    <h1>Please sign in!</h1>
+}
+
 <div class="row">
     @foreach (var events in Model)
     {
@@ -11,6 +19,8 @@
                         <img src="#" alt="Card image cap">
                     </div>
                     <div class="card-body">
+                        
+                        
                         
                     </div>
                 </div>

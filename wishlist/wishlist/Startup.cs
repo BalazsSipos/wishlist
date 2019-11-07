@@ -13,6 +13,7 @@ using whishlist;
 using wishlist.Models.Identity;
 using wishlist.Services;
 using wishlist.Services.BlobService;
+using wishlist.Services.User;
 
 namespace wishlist
 {
@@ -57,6 +58,7 @@ namespace wishlist
 
             services.AddTransient<IBlobStorageService, BlobStorageService>();
             services.AddTransient<IEventService, EventService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
