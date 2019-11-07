@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using whishlist;
+using wishlist;
 using wishlist.Models.Identity;
 using wishlist.Services;
 using wishlist.Services.BlobService;
