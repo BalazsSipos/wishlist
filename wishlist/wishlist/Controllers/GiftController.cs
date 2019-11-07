@@ -39,19 +39,36 @@ namespace wishlist.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddGiftWithDataRequest addGiftRequest)
+        public async Task<IActionResult> AddWithData(AddGiftWithDataRequest addGiftWithDataRequest)
         {
-            if (!await eventService.ValidateAccessAsync(addGiftRequest.EventId, User))
+            if (!await eventService.ValidateAccessAsync(addGiftWithDataRequest.EventId, User))
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
             if (ModelState.IsValid)
             {
-                await giftService.SaveGiftAsync(addGiftRequest);
-                return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftRequest.EventId });
+                await giftService.SaveGiftAsync(addGiftWithDataRequest);
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftWithDataRequest.EventId });
             }
-            return View(addGiftRequest);
+            return View(addGiftWithDataRequest);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddWithUrl(AddGiftWithUrlRequest addGiftWithUrlRequest)
+        {
+            if (!await eventService.ValidateAccessAsync(addGiftWithUrlRequest.EventId, User))
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+
+            if (ModelState.IsValid)
+            {
+                await giftService.SaveGiftFromArukeresoAsync("hello");
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftWithUrlRequest.EventId });
+            }
+            return View(addGiftWithUrlRequest);
+        }
+
     }
 }

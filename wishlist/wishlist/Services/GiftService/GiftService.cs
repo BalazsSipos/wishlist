@@ -26,20 +26,20 @@ namespace wishlist.Services.GiftService
             this.blobStorageService = blobStorageService;
         }
 
-        public async Task SaveGiftAsync(AddGiftWithDataRequest addGiftRequest)
+        public async Task SaveGiftAsync(AddGiftWithDataRequest addGiftWithDataRequest)
         {
-            var gift = mapper.Map<AddGiftWithDataRequest, Gift>(addGiftRequest);
+            var gift = mapper.Map<AddGiftWithDataRequest, Gift>(addGiftWithDataRequest);
             gift.Event = await applicationDbContext.Events.Include(e => e.Gifts).Include(e => e.Invitations)
-                .FirstOrDefaultAsync(e => e.EventId == addGiftRequest.EventId);
+                .FirstOrDefaultAsync(e => e.EventId == addGiftWithDataRequest.EventId);
             await applicationDbContext.Gifts.AddAsync(gift);
             await applicationDbContext.SaveChangesAsync();
-            if (addGiftRequest.Image == null)
+            if (addGiftWithDataRequest.Image == null)
             {
                 gift.PhotoUrl = "https://dotnetpincerstorage.blob.core.windows.net/mealimages/default/default.png";
             }
             else
             {
-                CloudBlockBlob blob = await blobStorageService.MakeBlobFolderAndSaveImageAsync("gift", gift.GiftId, addGiftRequest.Image);
+                CloudBlockBlob blob = await blobStorageService.MakeBlobFolderAndSaveImageAsync("gift", gift.GiftId, addGiftWithDataRequest.Image);
                 await AddImageUriToGiftAsync(gift.GiftId, blob);
             }
             await applicationDbContext.SaveChangesAsync();
