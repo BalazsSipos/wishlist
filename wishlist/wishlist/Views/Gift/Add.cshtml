@@ -1,0 +1,52 @@
+﻿@model AddGiftRequest
+@{
+    ViewData["Action"] = "Add";
+    await Html.RenderPartialAsync("_MealPartial");
+}
+
+    <form asp-controller="Gift" asp-action="@ViewData["Action"]" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="font-weight-bold">Név</label><br />
+            <input asp-for="Name">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="font-weight-bold">Ár</label><br />
+            <textarea asp-for="Price" rows="3"></textarea>
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="GiftUrl" class="font-weight-bold">Link az ajándékhoz</label><br />
+            <input asp-for="GiftUrl">
+            <span asp-validation-for="GiftUrl" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PhotoUrl" class="font-weight-bold">Link az ajándék képéhez</label><br />
+            <input asp-for="PhotoUrl">
+            <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Quantity" class="font-weight-bold">Mennyiség</label><br />
+            <input asp-for="Quantity">
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Image" class="font-weight-bold">Válassz képet</label><br />
+            <input type="file" asp-for="Image" lang="en" accept=".jpg, .png, .jpeg|image/*">
+        </div>
+
+        <div>
+            <input type="hidden" asp-for="eventId" value="@Model.eventId">
+        </div>
+        <button type="submit" class="btn btn-success">Hozzáad</button>
+    </form>
+<br />
+<form asp-controller="Home" asp-action="Index" method="get">
+    <button type="submit" class="btn btn-info">Vissza</button>
+</form>

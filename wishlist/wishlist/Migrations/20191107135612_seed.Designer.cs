@@ -9,8 +9,8 @@ using whishlist;
 namespace wishlist.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191107131358_initial")]
-    partial class initial
+    [Migration("20191107135612_seed")]
+    partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
