@@ -2,7 +2,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h1>Events</h1> 
+    <h1>Upcoming events</h1> 
 }
 else
 {
@@ -16,10 +16,12 @@ else
             <div class="card">
                 <div class="card-horizontal">
                     <div class="img-square-wrapper">
-                        <img src="#" alt="Card image cap">
+                        <img src="#" width="300" height="150" alt="Card image cap">
                     </div>
                     <div class="card-body">
-                        
+                        <h4 class="card-title">@Html.DisplayFor(modelRestaurant => events.Name)</h4>
+                        <p class="card-text"><b>Date:</b> @Html.DisplayFor(modelitem => events.EventDate)</p>
+                        <p class="card-text">Address: @Html.DisplayFor(modelItem => events.Address)</p>
                     </div>
                 </div>
             </div>
