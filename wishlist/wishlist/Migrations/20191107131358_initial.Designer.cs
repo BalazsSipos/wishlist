@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using whishlist;
+using wishlist;
 
 namespace wishlist.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191107120400_Initial")]
-    partial class Initial
+    [Migration("20191107131358_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -126,7 +126,7 @@ namespace wishlist.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("wishlist.models.Event", b =>
+            modelBuilder.Entity("wishlist.Models.Event", b =>
                 {
                     b.Property<long>("EventId")
                         .ValueGeneratedOnAdd();
@@ -152,7 +152,7 @@ namespace wishlist.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("wishlist.models.EventType", b =>
+            modelBuilder.Entity("wishlist.Models.EventType", b =>
                 {
                     b.Property<long>("EventTypeId")
                         .ValueGeneratedOnAdd();
@@ -162,9 +162,26 @@ namespace wishlist.Migrations
                     b.HasKey("EventTypeId");
 
                     b.ToTable("EventTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            EventTypeId = 1L,
+                            Name = "Christmas"
+                        },
+                        new
+                        {
+                            EventTypeId = 2L,
+                            Name = "Wedding"
+                        },
+                        new
+                        {
+                            EventTypeId = 3L,
+                            Name = "Birthday"
+                        });
                 });
 
-            modelBuilder.Entity("wishlist.models.Gift", b =>
+            modelBuilder.Entity("wishlist.Models.Gift", b =>
                 {
                     b.Property<long>("GiftId")
                         .ValueGeneratedOnAdd();
@@ -188,7 +205,7 @@ namespace wishlist.Migrations
                     b.ToTable("Gifts");
                 });
 
-            modelBuilder.Entity("wishlist.models.Identity.AppUser", b =>
+            modelBuilder.Entity("wishlist.Models.Identity.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -238,7 +255,7 @@ namespace wishlist.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("wishlist.models.Invitation", b =>
+            modelBuilder.Entity("wishlist.Models.Invitation", b =>
                 {
                     b.Property<long>("InvitationId")
                         .ValueGeneratedOnAdd();
@@ -256,7 +273,7 @@ namespace wishlist.Migrations
                     b.ToTable("Invitations");
                 });
 
-            modelBuilder.Entity("wishlist.models.UserGift", b =>
+            modelBuilder.Entity("wishlist.Models.UserGift", b =>
                 {
                     b.Property<long>("UserGiftId")
                         .ValueGeneratedOnAdd();
@@ -284,7 +301,7 @@ namespace wishlist.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("wishlist.models.Identity.AppUser")
+                    b.HasOne("wishlist.Models.Identity.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -292,7 +309,7 @@ namespace wishlist.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("wishlist.models.Identity.AppUser")
+                    b.HasOne("wishlist.Models.Identity.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -305,7 +322,7 @@ namespace wishlist.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("wishlist.models.Identity.AppUser")
+                    b.HasOne("wishlist.Models.Identity.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -313,44 +330,44 @@ namespace wishlist.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("wishlist.models.Identity.AppUser")
+                    b.HasOne("wishlist.Models.Identity.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("wishlist.models.Event", b =>
+            modelBuilder.Entity("wishlist.Models.Event", b =>
                 {
-                    b.HasOne("wishlist.models.Identity.AppUser", "AppUser")
+                    b.HasOne("wishlist.Models.Identity.AppUser", "AppUser")
                         .WithMany("Events")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("wishlist.models.EventType", "EventType")
+                    b.HasOne("wishlist.Models.EventType", "EventType")
                         .WithMany()
                         .HasForeignKey("EventTypeId");
                 });
 
-            modelBuilder.Entity("wishlist.models.Gift", b =>
+            modelBuilder.Entity("wishlist.Models.Gift", b =>
                 {
-                    b.HasOne("wishlist.models.Event", "Event")
+                    b.HasOne("wishlist.Models.Event", "Event")
                         .WithMany("Gifts")
                         .HasForeignKey("EventId");
                 });
 
-            modelBuilder.Entity("wishlist.models.Invitation", b =>
+            modelBuilder.Entity("wishlist.Models.Invitation", b =>
                 {
-                    b.HasOne("wishlist.models.Event", "Event")
+                    b.HasOne("wishlist.Models.Event", "Event")
                         .WithMany("Invitations")
                         .HasForeignKey("EventId");
                 });
 
-            modelBuilder.Entity("wishlist.models.UserGift", b =>
+            modelBuilder.Entity("wishlist.Models.UserGift", b =>
                 {
-                    b.HasOne("wishlist.models.Identity.AppUser", "BuyerUser")
+                    b.HasOne("wishlist.Models.Identity.AppUser", "BuyerUser")
                         .WithMany("ReservedGifts")
                         .HasForeignKey("BuyerUserId");
 
-                    b.HasOne("wishlist.models.Gift", "Gift")
+                    b.HasOne("wishlist.Models.Gift", "Gift")
                         .WithMany("BuyerUsers")
                         .HasForeignKey("GiftId");
                 });

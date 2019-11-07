@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using whishlist;
+using wishlist;
 using wishlist.Models.Identity;
 using wishlist.Models.RequestModels.Account;
 
