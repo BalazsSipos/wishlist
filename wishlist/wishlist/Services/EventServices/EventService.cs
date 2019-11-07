@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using whishlist;
+using wishlist;
 using wishlist.Models;
 
 namespace wishlist.Services
