@@ -1,5 +1,23 @@
 @model Event
 
+@{
+    switch (Model.EventType.Name)
+    {
+        case "Christmas":
+            Layout = "_LayoutChristmas";
+            break;
+        case "Birthday":
+            Layout = "_LayoutBirthday";
+            break;
+        case "Wedding":
+            Layout = "_LayoutWedding";
+            break;
+        default:
+            Layout = "_LayoutDefault";
+            break;
+    }
+}
+
 <div>
     <div>
         <h1>@Model.Name</h1>
@@ -8,9 +26,9 @@
         <h4><i class="fas fa-map-marked"></i> @Model.Address</h4>
         <h4><i class="fas fa-comment-dots"></i> @Model.Message</h4>
     </div>
-<br />
-<h2>Gifts</h2>
-<br />
+    <br />
+    <h2>Gifts</h2>
+    <br />
     <div class="row">
         @foreach (var gift in Model.Gifts)
         {
