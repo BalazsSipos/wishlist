@@ -1,4 +1,3 @@
-
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +8,20 @@ using wishlist.Services.EventService;
 
 namespace wishlist.Controllers
 {
-    public class HomeController : Controller
+    public class EventController : Controller
     {
         private readonly IEventService eventService;
-        
-        public HomeController(IEventService eventService)
+
+        public EventController(IEventService eventService)
         {
             this.eventService = eventService;
         }
-        
+
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Show(long id)
         {
-            var user = User;
-            var events = await eventService.FindEventsByManagerNameOrEmailAsync(user.Identity.Name);
-            return View(events);
+            var eventItem = await eventService.GetEventByIdAsync(id);
+            return View(eventItem);
         }
     }
 }
