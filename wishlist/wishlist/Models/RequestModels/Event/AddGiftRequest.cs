@@ -17,7 +17,7 @@ namespace wishlist.Models.RequestModels.Event
 
         public string GiftUrl { get; set; }
 
-        public string PhotoUrl { get; set; }
+        //public string PhotoUrl { get; set; }
 
         [Required]
         public int Quantity { get; set; }

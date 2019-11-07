@@ -29,6 +29,7 @@ namespace wishlist.Services.GiftService
             var gift = mapper.Map<AddGiftRequest, Gift>(addGiftRequest);
             gift.Event = await applicationDbContext.Events.Include(e => e.Gifts).Include(e => e.Invitations)
                 .FirstOrDefaultAsync(e => e.EventId == addGiftRequest.EventId);
+            
             await applicationDbContext.Gifts.AddAsync(gift);
             await applicationDbContext.SaveChangesAsync();
             if (addGiftRequest.Image == null)
