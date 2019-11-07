@@ -15,6 +15,7 @@ namespace wishlist.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public string Message { get; set; }
+        public string PhotoUrl { get; set; }
         public List<Gift> Gifts { get; set; }
         public List<Invitation> Invitations { get; set; }
     }

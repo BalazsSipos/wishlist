@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace wishlist.Migrations
 {
-    public partial class redoAfterPull : Migration
+    public partial class mergeConflict : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -177,7 +177,8 @@ namespace wishlist.Migrations
                     EventDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
-                    Message = table.Column<string>(nullable: true)
+                    Message = table.Column<string>(nullable: true),
+                    PhotoUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

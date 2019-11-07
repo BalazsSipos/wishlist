@@ -9,8 +9,8 @@ using wishlist;
 namespace wishlist.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191107185141_redoAfterPull")]
-    partial class redoAfterPull
+    [Migration("20191107232654_mergeConflict")]
+    partial class mergeConflict
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -142,6 +142,8 @@ namespace wishlist.Migrations
                     b.Property<string>("Message");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("PhotoUrl");
 
                     b.HasKey("EventId");
 

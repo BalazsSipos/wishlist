@@ -141,6 +141,8 @@ namespace wishlist.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("PhotoUrl");
+
                     b.HasKey("EventId");
 
                     b.HasIndex("AppUserId");

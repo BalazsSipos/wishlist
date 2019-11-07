@@ -64,7 +64,7 @@ namespace wishlist.Controllers
             if (ModelState.IsValid)
             {
                 await giftService.SaveGiftAsync(addGiftWithDataRequest);
-                return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftWithDataRequest.EventId });
+                return RedirectToAction(nameof(EventController.Show), "Show", new { id = addGiftWithDataRequest.EventId });
             }
             return View(addGiftWithDataRequest);
         }
