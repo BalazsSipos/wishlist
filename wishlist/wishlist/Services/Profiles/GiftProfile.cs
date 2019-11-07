@@ -12,8 +12,8 @@ namespace wishlist.Services.Profiles
     {
         public GiftProfile()
         {
-            CreateMap<AddGiftRequest, Gift>();
-            CreateMap<Gift, AddGiftRequest>();
+            CreateMap<AddGiftWithDataRequest, Gift>();
+            CreateMap<Gift, AddGiftWithDataRequest>();
         }
     }
 }

@@ -26,9 +26,9 @@ namespace wishlist.Services.GiftService
             this.blobStorageService = blobStorageService;
         }
 
-        public async Task SaveGiftAsync(AddGiftRequest addGiftRequest)
+        public async Task SaveGiftAsync(AddGiftWithDataRequest addGiftRequest)
         {
-            var gift = mapper.Map<AddGiftRequest, Gift>(addGiftRequest);
+            var gift = mapper.Map<AddGiftWithDataRequest, Gift>(addGiftRequest);
             gift.Event = await applicationDbContext.Events.Include(e => e.Gifts).Include(e => e.Invitations)
                 .FirstOrDefaultAsync(e => e.EventId == addGiftRequest.EventId);
             await applicationDbContext.Gifts.AddAsync(gift);

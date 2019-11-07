@@ -31,7 +31,7 @@ namespace wishlist.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
-            AddGiftRequest addGiftRequest = new AddGiftRequest()
+            AddGiftWithDataRequest addGiftRequest = new AddGiftWithDataRequest()
             {
                 EventId = id
             };
@@ -39,7 +39,7 @@ namespace wishlist.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddGiftRequest addGiftRequest)
+        public async Task<IActionResult> Add(AddGiftWithDataRequest addGiftRequest)
         {
             if (!await eventService.ValidateAccessAsync(addGiftRequest.EventId, User))
             {
