@@ -15,6 +15,6 @@ namespace wishlist.Services.GiftService
         Task SaveGiftAsync(AddGiftRequest addGiftRequest);
         Task AddImageUriToGiftAsync(long giftId, CloudBlockBlob blob);
         Task<Gift> GetGiftByIdAsync(long giftId);
-        Task SelectGiftByUserAsync(long id, ClaimsPrincipal user);
+        Task SelectGiftByUserAsync(Gift gift, ClaimsPrincipal user);
     }
 }

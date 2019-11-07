@@ -60,10 +60,9 @@ namespace wishlist.Services.GiftService
             return gift;
         }
 
-        public async Task SelectGiftByUserAsync(long giftId, ClaimsPrincipal user)
+        public async Task SelectGiftByUserAsync(Gift gift, ClaimsPrincipal user)
         {
-            var appUser = await userService.FindUserByNameOrEmailAsync(user.Identity.Name);
-            var gift = await GetGiftByIdAsync(giftId);
+            var appUser = await userService.FindUserByNameOrEmailAsync(user.Identity.Name); 
             var userGift = new UserGift()
             {
                 Gift = gift,

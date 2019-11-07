@@ -59,8 +59,9 @@ namespace wishlist.Controllers
         public async Task<IActionResult> SelectGift(long id)
         {
             var user = User;
-            await giftService.SelectGiftByUserAsync(id, user);
-            return RedirectToAction(nameof(EventController.Show), "Event");
+            var gift = await giftService.GetGiftByIdAsync(id);
+            await giftService.SelectGiftByUserAsync(gift, user);
+            return RedirectToAction(nameof(EventController.Show), "Event", new {id = gift.Event.EventId});
         }
     }
 }
