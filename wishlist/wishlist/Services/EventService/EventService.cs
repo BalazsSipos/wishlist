@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using wishlist;
 using wishlist.Models;
 
-namespace wishlist.Services
+namespace wishlist.Services.EventService
 {
     public class EventService : IEventService
     {
