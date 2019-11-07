@@ -42,10 +42,10 @@ namespace wishlist.Services.BlobService
             return blobContainer;
         }
 
-        public async Task<CloudBlockBlob> MakeBlobFolderAndSaveImageAsync(long id, IFormFile image)
+        public async Task<CloudBlockBlob> MakeBlobFolderAndSaveImageAsync(string folder, long id, IFormFile image)
         {
             CloudBlobContainer blobContainer = GetCloudBlobContainer();
-            CloudBlockBlob blob = blobContainer.GetBlockBlobReference(id + "/" + image.Name + ".jpg");
+            CloudBlockBlob blob = blobContainer.GetBlockBlobReference(folder + "/" + id + "/" + image.Name + ".jpg");
             using (var stream = image.OpenReadStream())
             {
                 await blob.UploadFromStreamAsync(stream);
