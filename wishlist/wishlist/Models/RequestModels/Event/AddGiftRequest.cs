@@ -23,7 +23,7 @@ namespace wishlist.Models.RequestModels.Event
         public int Quantity { get; set; }
 
         [Required]
-        public long eventId { get; set; }
+        public long EventId { get; set; }
 
         public IFormFile Image { get; set; }
     }

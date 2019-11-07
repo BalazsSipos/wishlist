@@ -21,7 +21,6 @@ namespace wishlist.Controllers
         public async Task<IActionResult> Show(long id)
         {
             var eventItem = await eventService.GetEventByIdAsync(id);
-
             return View(eventItem);
         }
     }

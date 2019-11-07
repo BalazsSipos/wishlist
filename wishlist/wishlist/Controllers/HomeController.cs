@@ -22,7 +22,7 @@ namespace wishlist.Controllers
         public async Task<IActionResult> Index()
         {
             var user = User;
-            var events = await eventService.FindEventsByUserAsync(user);
+            var events = await eventService.FindEventsByManagerNameOrEmailAsync(user.Identity.Name);
             return View(events);
         }
     }

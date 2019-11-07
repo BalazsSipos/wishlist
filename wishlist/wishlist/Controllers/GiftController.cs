@@ -33,7 +33,7 @@ namespace wishlist.Controllers
 
             AddGiftRequest addGiftRequest = new AddGiftRequest()
             {
-                eventId = id
+                EventId = id
             };
             return View(addGiftRequest);
         }
@@ -41,7 +41,7 @@ namespace wishlist.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddGiftRequest addGiftRequest)
         {
-            if (!await eventService.ValidateAccessAsync(addGiftRequest.eventId, User))
+            if (!await eventService.ValidateAccessAsync(addGiftRequest.EventId, User))
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
@@ -49,7 +49,7 @@ namespace wishlist.Controllers
             if (ModelState.IsValid)
             {
                 await giftService.SaveGiftAsync(addGiftRequest);
-                return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftRequest.eventId });
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftRequest.EventId });
             }
             return View(addGiftRequest);
         }
