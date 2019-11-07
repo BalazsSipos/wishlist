@@ -13,6 +13,7 @@ namespace wishlist.Services.Profiles
         {
             var config = new MapperConfiguration(cfg => {
                 cfg.AddProfile(new GiftProfile());
+                cfg.AddProfile(new EventProfile());
             });
             IMapper iMapper = config.CreateMapper();
             services.AddSingleton(iMapper);
