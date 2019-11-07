@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using wishlist.Models;
 using wishlist.Models.RequestModels.Event;
 using wishlist.Services;
 using wishlist.Services.EventService;
@@ -52,6 +53,14 @@ namespace wishlist.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftRequest.EventId });
             }
             return View(addGiftRequest);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SelectGift(long id)
+        {
+            var user = User;
+            await giftService.SelectGiftByUserAsync(id, user);
+            return RedirectToAction(nameof(EventController.Show), "Event");
         }
     }
 }

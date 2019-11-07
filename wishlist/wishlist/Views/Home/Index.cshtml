@@ -10,7 +10,7 @@ else
 }
 
 <div class="row">
-    @foreach (var events in Model)
+    @foreach (var eventItem in Model)
     {
         <div class="col-md-6">
             <div class="card">
@@ -19,11 +19,11 @@ else
                         <img src="#" width="300" height="150" alt="Card image cap">
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">@Html.DisplayFor(modelEvent => events.Name)</h4>
-                        <p class="card-text"><b>Date:</b> @Html.DisplayFor(modelEvent => events.EventDate)</p>
-                        <p class="card-text">Address: @Html.DisplayFor(modelEvent => events.Address)</p>
+                        <h4 class="card-title">@Html.DisplayFor(modelEvent => eventItem.Name)</h4>
+                        <p class="card-text"><b>Date:</b> @Html.DisplayFor(modelEvent => eventItem.EventDate)</p>
+                        <p class="card-text">Address: @Html.DisplayFor(modelEvent => eventItem.Address)</p>
                         <div class="menu-button">
-                            <form asp-controller="Event" asp-action="Show" method="get" asp-route-Id="@events.EventId">
+                            <form asp-controller="Event" asp-action="Show" method="get" asp-route-Id="@eventItem.EventId">
                                 <button type="submit" class="btn btn-success">Go to the event page</button>
                             </form>
                         </div>

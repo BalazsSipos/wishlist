@@ -24,6 +24,11 @@
                             <h4 class="card-title">@Html.DisplayFor(modelGift => gift.Name)</h4>
                             <p class="card-text">Unit price: @Html.DisplayFor(modelGift => gift.Price)</p>
                             <p class="card-text p-3 mb-2 bg-light text-dark">Quantity: @Html.DisplayFor(modelGift => gift.Quantity)</p>
+                            <div class="menu-button">
+                                <form asp-controller="Gift" asp-action="SelectGift" method="post" asp-route-Id="@gift.GiftId">
+                                    <button type="submit" class="btn btn-success">Select gift</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
