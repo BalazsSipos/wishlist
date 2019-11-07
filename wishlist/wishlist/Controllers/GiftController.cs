@@ -64,7 +64,7 @@ namespace wishlist.Controllers
 
             if (ModelState.IsValid)
             {
-                await giftService.SaveGiftFromArukeresoAsync("hello");
+                await giftService.SaveGiftFromArukeresoAsync(addGiftWithUrlRequest);
                 return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftWithUrlRequest.EventId });
             }
             return View(addGiftWithUrlRequest);

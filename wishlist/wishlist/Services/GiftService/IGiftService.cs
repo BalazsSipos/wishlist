@@ -13,6 +13,6 @@ namespace wishlist.Services.GiftService
         Task SaveGiftAsync(AddGiftWithDataRequest addGiftWithDataRequest);
         Task AddImageUriToGiftAsync(long giftId, CloudBlockBlob blob);
         Task<Gift> GetGiftByIdAsync(long giftId);
-        Task SaveGiftFromArukeresoAsync(string uri);
+        Task SaveGiftFromArukeresoAsync(AddGiftWithUrlRequest addGiftWithUrlRequest);
     }
 }
