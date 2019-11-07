@@ -1,5 +1,7 @@
 ﻿html, body {
-  background-color: black;
+  background: gray url(../img/backgroundImg/Christmas_Background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1 {
