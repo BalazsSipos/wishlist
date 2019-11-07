@@ -8,6 +8,8 @@ using wishlist.Models;
 using wishlist.Models.RequestModels.Event;
 using wishlist.Services.BlobService;
 using Microsoft.Azure.Storage.Blob;
+using System.Net.Http;
+using HtmlAgilityPack;
 
 namespace wishlist.Services.GiftService
 {
@@ -52,6 +54,27 @@ namespace wishlist.Services.GiftService
         public async Task<Gift> GetGiftByIdAsync(long giftId)
         {
             var gift = await applicationDbContext.Gifts.Include(g => g.Event).FirstOrDefaultAsync(g => g.GiftId == giftId);
+            return gift;
+        }
+
+        public async Task<Gift> AddGiftUrlAsync(long giftId, string url)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync(url);
+            var pageContents = await response.Content.ReadAsStringAsync();
+            HtmlDocument pageDocument = new HtmlDocument();
+            pageDocument.LoadHtml(pageContents);
+            var gift = new Gift();
+            try
+            {
+                gift.Name = pageDocument.DocumentNode.SelectSingleNode("(//div[contains(@class,'product-details')]//h1)").InnerText.Trim();
+                gift.Price = Int32.Parse(pageDocument.DocumentNode.SelectSingleNode("(//span[contains(@itemprop,'lowPrice')])").Attributes["content"].Value);
+                gift.PhotoUrl = pageDocument.DocumentNode.SelectSingleNode("(/html[1]/body[1]/div[1]/div[2]/div[2]/div[1]/a[1]/img[1])").Attributes["src"].Value;
+            }
+            catch
+            {
+
+            }
             return gift;
         }
     }
