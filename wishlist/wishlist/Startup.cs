@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using whishlist;
 using wishlist.models.Identity;
+using wishlist.Services.BlobService;
 
 namespace wishlist
 {
@@ -52,6 +53,8 @@ namespace wishlist
                     options.ClientId = "878629613299-5h3qgsic9d4bi8vq1ctuki2146u7qhf0.apps.googleusercontent.com";
                     options.ClientSecret = "7_zykgr08DESNJqMmQc8j8PF";
                 });
+
+            services.AddTransient<IBlobStorageService, BlobStorageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

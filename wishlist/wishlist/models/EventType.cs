@@ -7,7 +7,7 @@ namespace wishlist.models
 {
     public class EventType
     {
-        public long EvenTypeId { get; set; }
+        public long EventTypeId { get; set; }
         public string Name { get; set; }
     }
 }
