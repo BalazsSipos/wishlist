@@ -31,7 +31,7 @@ namespace wishlist.Services.EventService
 
         public async Task<Event> GetEventByIdAsync(long eventId)
         {
-            var eventItem = await applicationDbContext.Events.Include(e => e.Gifts).Include(e => e.Invitations).FirstOrDefaultAsync(e => e.EventId == eventId);
+            var eventItem = await applicationDbContext.Events.Include(e => e.Gifts).Include(e => e.Invitations).Include(e => e.EventType).FirstOrDefaultAsync(e => e.EventId == eventId);
             if (eventItem == null)
             {
                 return null;
