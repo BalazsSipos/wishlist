@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using wishlist.Models.RequestModels.Event;
 using wishlist.Services;
 using wishlist.Services.EventService;
+using wishlist.Services.GiftService;
 
 namespace wishlist.Controllers
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using wishlist.Models;
 using wishlist.Models.RequestModels.Event;
 
-namespace wishlist.Services
+namespace wishlist.Services.GiftService
 {
     public interface IGiftService
     {
