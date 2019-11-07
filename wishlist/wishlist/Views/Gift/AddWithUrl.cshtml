@@ -1,6 +1,6 @@
-﻿@model AddGiftRequest
+﻿@model AddGiftWithUrlRequest
 @{
-    ViewData["Action"] = "Add";
+    ViewData["Action"] = "AddWithUrl";
 }
     <h3>Add gift</h3>
     <form asp-controller="Gift" asp-action="@ViewData["Action"]" method="post" enctype="multipart/form-data">
