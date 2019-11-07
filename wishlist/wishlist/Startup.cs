@@ -13,6 +13,9 @@ using wishlist;
 using wishlist.Models.Identity;
 using wishlist.Services;
 using wishlist.Services.BlobService;
+using wishlist.Services.EventService;
+using wishlist.Services.GiftService;
+using wishlist.Services.Profiles;
 using wishlist.Services.User;
 
 namespace wishlist
@@ -48,6 +51,7 @@ namespace wishlist
                     build.UseMySql(configuration.GetConnectionString("DefaultConnection"));
                 });
             }
+            services.SetUpAutoMapper();
             services.AddMvc();
             services.AddAuthentication()
                 .AddGoogle(options =>
@@ -59,6 +63,7 @@ namespace wishlist
             services.AddTransient<IBlobStorageService, BlobStorageService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IEventService, EventService>();
+            services.AddTransient<IGiftService, GiftService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
