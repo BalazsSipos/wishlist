@@ -57,6 +57,7 @@ namespace wishlist
                 });
 
             services.AddTransient<IBlobStorageService, BlobStorageService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IEventService, EventService>();
             services.AddTransient<IUserService, UserService>();
         }
