@@ -2,29 +2,29 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-  <h1>Upcoming events</h1>
+    <h1>Upcoming events</h1>
 }
 else
 {
-  <h1>Please sign in!</h1>
+    <h1>Please sign in!</h1>
 }
 
 <div class="row">
-  @foreach (var events in Model)
-  {
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-horizontal">
-          <div class="img-square-wrapper">
-            <img src="#" width="300" height="150" alt="Card image cap">
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">@Html.DisplayFor(modelRestaurant => events.Name)</h4>
-            <p class="card-text"><b>Date:</b> @Html.DisplayFor(modelitem => events.EventDate)</p>
-            <p class="card-text">Address: @Html.DisplayFor(modelItem => events.Address)</p>
-          </div>
+    @foreach (var events in Model)
+    {
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img src="#" width="300" height="150" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelRestaurant => events.Name)</h4>
+                        <p class="card-text"><b>Date:</b> @Html.DisplayFor(modelitem => events.EventDate)</p>
+                        <p class="card-text">Address: @Html.DisplayFor(modelItem => events.Address)</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  }
+    }
 </div>
