@@ -37,7 +37,7 @@ namespace wishlist.Services.GiftService
             }
             else
             {
-                CloudBlockBlob blob = await blobStorageService.MakeBlobFolderAndSaveImageAsync(gift.GiftId, addGiftRequest.Image);
+                CloudBlockBlob blob = await blobStorageService.MakeBlobFolderAndSaveImageAsync("gift", gift.GiftId, addGiftRequest.Image);
                 await AddImageUriToGiftAsync(gift.GiftId, blob);
             }
             await applicationDbContext.SaveChangesAsync();
