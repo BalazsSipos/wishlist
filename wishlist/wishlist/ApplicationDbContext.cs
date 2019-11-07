@@ -19,7 +19,15 @@ namespace whishlist
         public DbSet<UserGift> UserGifts { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
-        { 
+        {
+        }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<EventType>().HasData(
+                new EventType { Name = "Christmas", EventTypeId = 1 },
+                new EventType { Name = "Wedding", EventTypeId = 2 },
+                new EventType { Name = "Birthday", EventTypeId = 3 });
         }
     }
 }
