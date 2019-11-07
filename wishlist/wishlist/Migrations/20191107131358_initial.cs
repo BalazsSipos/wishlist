@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace wishlist.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -266,6 +266,21 @@ namespace wishlist.Migrations
                         principalColumn: "GiftId",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "EventTypes",
+                columns: new[] { "EventTypeId", "Name" },
+                values: new object[] { 1L, "Christmas" });
+
+            migrationBuilder.InsertData(
+                table: "EventTypes",
+                columns: new[] { "EventTypeId", "Name" },
+                values: new object[] { 2L, "Wedding" });
+
+            migrationBuilder.InsertData(
+                table: "EventTypes",
+                columns: new[] { "EventTypeId", "Name" },
+                values: new object[] { 3L, "Birthday" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
