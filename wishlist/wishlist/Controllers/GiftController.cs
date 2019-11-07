@@ -49,7 +49,7 @@ namespace wishlist.Controllers
             if (ModelState.IsValid)
             {
                 await giftService.SaveGiftAsync(addGiftRequest);
-                return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftRequest.EventId });
+                return RedirectToAction(nameof(EventController.Show), "Show", new { id = addGiftRequest.EventId });
             }
             return View(addGiftRequest);
         }

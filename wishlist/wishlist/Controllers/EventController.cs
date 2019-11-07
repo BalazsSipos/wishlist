@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using wishlist.Models.RequestModels.Event;
 using wishlist.Services;
 using wishlist.Services.EventService;
 
@@ -22,6 +23,24 @@ namespace wishlist.Controllers
         {
             var eventItem = await eventService.GetEventByIdAsync(id);
             return View(eventItem);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            AddEventRequest addEventRequest = await eventService.BuildEmptyAddEventRequestAsync(null);
+            return View(addEventRequest);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddEventRequest addEventRequest)
+        {
+            if (ModelState.IsValid)
+            {
+                await eventService.SaveEventAsync(addEventRequest, User);
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+            return View(await eventService.BuildEmptyAddEventRequestAsync(addEventRequest));
         }
     }
 }
