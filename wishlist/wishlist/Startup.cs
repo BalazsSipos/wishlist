@@ -63,7 +63,11 @@ namespace wishlist
             services.AddTransient<IBlobStorageService, BlobStorageService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IEventService, EventService>();
+<<<<<<< HEAD
             services.AddTransient<IGiftService, GiftService>();
+=======
+            services.AddTransient<IUserService, UserService>();
+>>>>>>> 5c83eed36c4572415171c1791760deebab226b7b
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
