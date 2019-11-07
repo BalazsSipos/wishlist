@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using whishlist;
 using wishlist.Models.Identity;
+using wishlist.Services;
 using wishlist.Services.BlobService;
 
 namespace wishlist
@@ -55,6 +56,7 @@ namespace wishlist
                 });
 
             services.AddTransient<IBlobStorageService, BlobStorageService>();
+            services.AddTransient<IEventService, EventService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
