@@ -30,6 +30,17 @@
     <h2>Gifts</h2>
     <br />
     <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <a asp-controller="Gift" asp-action="AddWithUrl" asp-route-Id="@Model.EventId">
+                            <img src="~/img/button_add/addnewgift.png" width="550" height="150" alt="Add new gift">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         @foreach (var gift in Model.Gifts)
         {
             <div class="col-md-6">
