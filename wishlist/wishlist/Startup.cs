@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using whishlist;
+using wishlist;
 using wishlist.Models.Identity;
+using wishlist.Services;
 using wishlist.Services.BlobService;
+using wishlist.Services.User;
 
 namespace wishlist
 {
@@ -55,6 +57,8 @@ namespace wishlist
                 });
 
             services.AddTransient<IBlobStorageService, BlobStorageService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IEventService, EventService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

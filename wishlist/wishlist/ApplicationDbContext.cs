@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using wishlist.Models;
 using wishlist.Models.Identity;
 
-namespace whishlist
+namespace wishlist
 {
     public class ApplicationDbContext : IdentityDbContext<AppUser>
     {

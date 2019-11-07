@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Sign In to Wishlist";
+}
+@model LoginRequest
+
+<h1>Please sign in</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            @foreach (var provider in Model.ExternalLogins)
+            {
+                <button type="submit" name="provider" class="google-sign-in-button"
+                        value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                    <div id="google-customBtn">
+                        <span class="google-icon"></span>
+                        <span class="google-buttonText">Sign in with Google</span>
+                    </div>
+                </button>
+            }
+        </form>
+    </div>
+</div>
