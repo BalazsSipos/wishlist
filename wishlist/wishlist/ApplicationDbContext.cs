@@ -5,8 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using wishlist.models;
-using wishlist.models.Identity;
+using wishlist.Models;
+using wishlist.Models.Identity;
 
 namespace whishlist
 {
