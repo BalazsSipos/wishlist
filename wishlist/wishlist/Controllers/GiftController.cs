@@ -33,7 +33,8 @@ namespace wishlist.Controllers
 
             AddGiftWithUrlRequest addGiftWithUrlRequest = new AddGiftWithUrlRequest()
             {
-                EventId = id
+                EventId = id,
+                Quantity = 1
             };
             return View(addGiftWithUrlRequest);
         }
@@ -48,7 +49,8 @@ namespace wishlist.Controllers
 
             AddGiftWithDataRequest addGiftWithDataRequest = new AddGiftWithDataRequest()
             {
-                EventId = id
+                EventId = id,
+                Quantity = 1
             };
             return View(addGiftWithDataRequest);
         }
