@@ -1,0 +1,148 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.menu-color {
+    color: aliceblue !important;
+    background: red !important;
+}
+
+    .menu-color:hover {
+        background: orange !important;
+    }
+
+.dropdown-color {
+    background: red !important;
+}
+
+h1, h2, h3 {
+    font-family: 'Dancing Script', cursive !important;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/* Positioning-Dani*/
+.left {
+    float: left;
+}
+
+.redinfo {
+    color: red;
+    text-align: right;
+}
+
+/* Google sign-in button*/
+.google-sign-in-button {
+    display: contents;
+}
+
+#google-customBtn {
+    display: inline-block;
+    background: #4285F4;
+    color: white;
+    width: 210px;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+}
+
+    #google-customBtn:hover {
+        cursor: pointer;
+    }
+
+span.google-label {
+    font-family: serif;
+    font-weight: normal;
+}
+
+span.google-icon {
+    background: url('/img/google_signin_buttons/btn_google_dark_normal_ios.svg') transparent 5px 50% no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 48px;
+    height: 42px;
+}
+
+span.google-buttonText {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    /* Use the Roboto font that is loaded in the <head> */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Cards */
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.card {
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 3px 0px;
+}
+
+.col-md-4 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.card:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 4px 8px 0px;
+}
+
+.card-body {
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+.menu-button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Upper Menu */
+.nounderline {
+    text-decoration: none !important
+}
+
+/* Other */
+.dancing-font {
+    font-family: 'Dancing Script', cursive;
+    color: aliceblue !important;
+}
+
+.inline {
+    display: inline;
+}
