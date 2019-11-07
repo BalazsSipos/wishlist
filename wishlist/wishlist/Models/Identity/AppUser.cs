@@ -8,5 +8,7 @@ namespace wishlist.Models.Identity
 {
     public class AppUser : IdentityUser
     {
+        public List<Event> Events { get; set; }
+        public List<UserGift> ReservedGifts { get; set; }
     }
 }
