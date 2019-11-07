@@ -1,9 +1,8 @@
 ﻿@model AddGiftRequest
 @{
     ViewData["Action"] = "Add";
-    await Html.RenderPartialAsync("_MealPartial");
 }
-
+    <h3>Ajándék hozzáadása</h3>
     <form asp-controller="Gift" asp-action="@ViewData["Action"]" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">

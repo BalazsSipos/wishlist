@@ -12,5 +12,6 @@ namespace wishlist.Services.EventService
         Task<Event> GetEventByIdAsync(long eventId);
         Task<bool> ValidateAccessAsync(long eventId, ClaimsPrincipal user);
         Task<List<Event>> FindEventByManagerNameOrEmailAsync(string managerName);
+        Task<List<Event>> FindEventsByUserAsync(ClaimsPrincipal user);
     }
 }

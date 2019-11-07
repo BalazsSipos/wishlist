@@ -36,5 +36,21 @@ namespace wishlist.Controllers
             };
             return View(addGiftRequest);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddGiftRequest addGiftRequest)
+        {
+            if (!await eventService.ValidateAccessAsync(addGiftRequest.eventId, User))
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+
+            if (ModelState.IsValid)
+            {
+                await giftService.SaveGiftAsync(addGiftRequest);
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftRequest.eventId });
+            }
+            return View(addGiftRequest);
+        }
     }
 }

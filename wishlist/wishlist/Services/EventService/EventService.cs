@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using whishlist;
+using wishlist;
 using wishlist.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -39,6 +39,12 @@ namespace wishlist.Services.EventService
         {
             var eventList = await applicationDbContext.Events.Include(e => e.Gifts).AsQueryable().Where(e => e.AppUser.UserName == managerName).OrderBy(e => e.Name).ToListAsync();
             return eventList;
+        }
+
+        public async Task<List<Event>> FindEventsByUserAsync(ClaimsPrincipal user)
+        {
+            var events = await applicationDbContext.Events.Where(e => e.AppUser.UserName == user.Identity.Name).ToListAsync();
+            return events;
         }
     }
 }
