@@ -57,7 +57,7 @@ namespace wishlist.Services.GiftService
             return gift;
         }
 
-        public async Task<Gift> AddGiftUrlAsync(long giftId, string url)
+        public async Task SaveGiftFromArukeresoAsync(string url)
         {
             HttpClient client = new HttpClient();
             var response = await client.GetAsync(url);
@@ -70,12 +70,13 @@ namespace wishlist.Services.GiftService
                 gift.Name = pageDocument.DocumentNode.SelectSingleNode("(//div[contains(@class,'product-details')]//h1)").InnerText.Trim();
                 gift.Price = Int32.Parse(pageDocument.DocumentNode.SelectSingleNode("(//span[contains(@itemprop,'lowPrice')])").Attributes["content"].Value);
                 gift.PhotoUrl = pageDocument.DocumentNode.SelectSingleNode("(/html[1]/body[1]/div[1]/div[2]/div[2]/div[1]/a[1]/img[1])").Attributes["src"].Value;
+                await applicationDbContext.Gifts.AddAsync(gift);
+                await applicationDbContext.SaveChangesAsync();
             }
             catch
             {
-
+                throw new InvalidOperationException("Cannot parse url or cannot save to DB. Is that a url from arukereso.hu?");
             }
-            return gift;
         }
     }
 }
