@@ -13,6 +13,7 @@ using wishlist;
 using wishlist.Models.Identity;
 using wishlist.Services;
 using wishlist.Services.BlobService;
+using wishlist.Services.EventService;
 using wishlist.Services.User;
 
 namespace wishlist

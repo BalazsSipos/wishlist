@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using wishlist.Models;
 
-namespace wishlist.Services
+namespace wishlist.Services.EventService
 {
     public interface IEventService
     {
