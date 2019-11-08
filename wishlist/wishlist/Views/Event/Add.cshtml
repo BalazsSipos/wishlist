@@ -2,7 +2,7 @@
 @{
     ViewData["Action"] = "Add";
 }
-<h3>Add event</h3>
+<h1 class="black">Add event</h1>
 <form asp-controller="Event" asp-action="@ViewData["Action"]" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -17,36 +17,36 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="EventDate" class="font-weight-bold">EventDate</label><br />
+        <label asp-for="EventDate" class="font-weight-bold black">EventDate</label><br />
         <input asp-for="EventDate" type="date" input value="YYYY-MM-DD" min="2019-11-01" max="2025-12-31">
         <span asp-validation-for="EventDate" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Name" class="font-weight-bold">Name</label><br />
+        <label asp-for="Name" class="font-weight-bold black">Name</label><br />
         <input asp-for="Name">
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Address" class="font-weight-bold">Address</label><br />
+        <label asp-for="Address" class="font-weight-bold black">Address</label><br />
         <textarea asp-for="Address" rows="3"></textarea>
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Message" class="font-weight-bold">Message</label><br />
+        <label asp-for="Message" class="font-weight-bold black">Message</label><br />
         <input asp-for="Message">
         <span asp-validation-for="Message" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Image" class="font-weight-bold">Choose picture</label><br />
-        <input type="file" asp-for="Image" lang="en" accept=".jpg, .png, .jpeg|image/*">
+        <label asp-for="Image" class="font-weight-bold black">Choose picture</label><br />
+        <center><input type="file" asp-for="Image" lang="en" accept=".jpg, .png, .jpeg|image/*"></center>
     </div>
-    <button type="submit" class="btn btn-success">Add</button>
+    <button type="submit" class="btn btn-primary">Add</button>
 </form>
 <br />
-<form asp-controller="Event" asp-action="Show" method="get">
+<form asp-controller="Home" asp-action="Index" method="get">
     <button type="submit" class="btn btn-info">Cancel</button>
 </form>

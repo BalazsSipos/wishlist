@@ -1,24 +1,35 @@
 @model List<Event>
 <head>
-  <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
 </head>
 @if (User.Identity.IsAuthenticated)
 {
-  <h1>Upcoming events</h1>
+    <h1 class="black">Upcoming events</h1>
 }
 else
 {
-  <h1>Please sign in!</h1>
+    <h1 class="black">Please sign in!</h1>
 }
 
 <div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-horizontal">
+                <div class="img-square-wrapper">
+                    <a asp-controller="Event" asp-action="Add">
+                        <img src="~/img/button_add/addEvent.png" width="550" height="150" alt="Add Event">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     @foreach (var eventItem in Model)
     {
         <div class="col-md-6">
             <div class="card">
                 <div class="card-horizontal">
                     <div class="img-square-wrapper">
-                        <img src="@eventItem.PhotoUrl" width="300" height="150" alt="Card image cap">
+                        <img src="@eventItem.PhotoUrl" width="300" height="150" alt="Event picture">
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">@eventItem.Name</h4>
@@ -34,5 +45,5 @@ else
             </div>
         </div>
     }
-    
+
 </div>

@@ -78,7 +78,7 @@ namespace wishlist.Controllers
             var user = User;
             var gift = await giftService.GetGiftByIdAsync(id);
             await giftService.SelectGiftByUserAsync(gift, user);
-            return RedirectToAction(nameof(EventController.Show), "Event", new {id = gift.Event.EventId});
+            return RedirectToAction(nameof(EventController.Show), "Event", new { id = gift.Event.EventId });
         }
 
         [HttpPost]
@@ -86,7 +86,7 @@ namespace wishlist.Controllers
         {
             if (!await eventService.ValidateAccessAsync(addGiftWithUrlRequest.EventId, User))
             {
-                return RedirectToAction(nameof(EventController.Show), "Show");
+                return RedirectToAction(nameof(EventController.Show), "Event");
             }
 
             if (ModelState.IsValid)
