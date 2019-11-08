@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using wishlist.Models.RequestModels.Event;
 using wishlist.Services;
+using wishlist.Services.EmailService;
 using wishlist.Services.EventService;
 
 namespace wishlist.Controllers
@@ -14,10 +15,12 @@ namespace wishlist.Controllers
     public class EventController : Controller
     {
         private readonly IEventService eventService;
+        private readonly IEmailService emailService;
 
-        public EventController(IEventService eventService)
+        public EventController(IEventService eventService, IEmailService emailService)
         {
             this.eventService = eventService;
+            this.emailService = emailService;
         }
 
         [HttpGet]
@@ -43,6 +46,13 @@ namespace wishlist.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
             return View(await eventService.BuildEmptyAddEventRequestAsync(addEventRequest));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendMail(long id, bool sendAll)
+        {
+            await emailService.SendMailToBuyers(id, sendAll);
+            return RedirectToAction(nameof(EventController.Show), "Event", new { id = id });
         }
     }
 }

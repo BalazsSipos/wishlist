@@ -13,6 +13,7 @@ using wishlist;
 using wishlist.Models.Identity;
 using wishlist.Services;
 using wishlist.Services.BlobService;
+using wishlist.Services.EmailService;
 using wishlist.Services.EventService;
 using wishlist.Services.GiftService;
 using wishlist.Services.InvitationService;
@@ -66,6 +67,7 @@ namespace wishlist
             services.AddTransient<IEventService, EventService>();
             services.AddTransient<IGiftService, GiftService>();
             services.AddTransient<IInvitationService, InvitationService>();
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

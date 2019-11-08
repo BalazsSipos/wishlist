@@ -30,5 +30,15 @@ namespace wishlist.Services.InvitationService
             await applicationDbContext.Invitations.AddAsync(invitation);
             await applicationDbContext.SaveChangesAsync();
         }
+
+        public async Task ChangeInvitationStatusToSent(long eventId)
+        {
+            var eventItem = await eventService.GetEventByIdAsync(eventId);
+            foreach (Invitation invitation in eventItem.Invitations)
+            {
+                invitation.IsEmailSent = true;
+            }
+            await applicationDbContext.SaveChangesAsync();
+        }
     }
 }
