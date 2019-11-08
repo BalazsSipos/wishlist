@@ -9,5 +9,6 @@ namespace wishlist.Services.InvitationService
     public interface IInvitationService
     {
         Task SaveInvitationAsync(string InvitedEmail, long id);
+        Task ChangeInvitationStatusToSent(long eventId);
     }
 }

@@ -49,9 +49,9 @@ namespace wishlist.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMail(long id)
+        public async Task<IActionResult> SendMail(long id, bool sendAll)
         {
-            await emailService.SendMailToBuyers(id);
+            await emailService.SendMailToBuyers(id, sendAll);
             return RedirectToAction(nameof(EventController.Show), "Event", new { id = id });
         }
     }
