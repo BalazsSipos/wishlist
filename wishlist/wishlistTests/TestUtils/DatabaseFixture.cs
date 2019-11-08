@@ -40,7 +40,8 @@ namespace wishlistTests.TestUtils
             Event testEvent = new Event
             {
                 Name = "Test Christmas 2019",
-                EventType =
+                EventDate = DateTime.UtcNow,
+                EventType = new EventType
                 {
                     Name = "Christmas"
                 }
@@ -48,7 +49,8 @@ namespace wishlistTests.TestUtils
             Event testEvent2 = new Event
             {
                 Name = "Test Birthday 2020",
-                EventType =
+                EventDate = DateTime.UtcNow,
+                EventType = new EventType
                 {
                     Name = "Birthday"
                 }
