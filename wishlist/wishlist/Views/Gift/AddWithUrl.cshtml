@@ -24,7 +24,7 @@
         <button type="submit" class="btn btn-success">Add</button>
     </form>
 <br />
-<form asp-controller="Home" asp-action="Index" method="get">
+<form asp-controller="Event" asp-action="Show" asp-route-id="@Model.EventId" method="get">
     <button type="submit" class="btn btn-info">Cancel</button>
 </form>
 <a asp-area="" asp-controller="Gift" asp-action="AddWithData" asp-route-id="@Model.EventId">Add item with data</a>

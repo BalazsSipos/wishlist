@@ -86,13 +86,13 @@ namespace wishlist.Controllers
         {
             if (!await eventService.ValidateAccessAsync(addGiftWithUrlRequest.EventId, User))
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(EventController.Show), "Show");
             }
 
             if (ModelState.IsValid)
             {
                 await giftService.SaveGiftFromArukeresoAsync(addGiftWithUrlRequest);
-                return RedirectToAction(nameof(HomeController.Index), "Home", new { id = addGiftWithUrlRequest.EventId });
+                return RedirectToAction(nameof(EventController.Show), "Event", new { id = addGiftWithUrlRequest.EventId });
             }
             return View(addGiftWithUrlRequest);
         }
