@@ -60,8 +60,13 @@
                             <a href=@gift.GiftUrl target="_blank">
                                 <h4 class="card-title">@gift.Name</h4>
                             </a>
-                            <p class="card-text">Unit price: @gift.Price</p>
+                            <p class="card-text">Unit price: @gift.Price Ft</p>
                             <p class="card-text">Quantity: @gift.Quantity</p>
+                            <div class="menu-button">
+                                <form asp-controller="Gift" asp-action="SelectGift" method="post" asp-route-Id="@gift.GiftId">
+                                    <button type="submit" class="btn btn-success">Select gift</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
