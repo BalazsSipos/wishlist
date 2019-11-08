@@ -15,6 +15,7 @@ using wishlist.Services;
 using wishlist.Services.BlobService;
 using wishlist.Services.EventService;
 using wishlist.Services.GiftService;
+using wishlist.Services.InvitationService;
 using wishlist.Services.Profiles;
 using wishlist.Services.User;
 
@@ -64,6 +65,7 @@ namespace wishlist
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IEventService, EventService>();
             services.AddTransient<IGiftService, GiftService>();
+            services.AddTransient<IInvitationService, InvitationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
