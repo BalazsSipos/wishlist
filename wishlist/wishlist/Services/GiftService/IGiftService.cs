@@ -10,8 +10,9 @@ namespace wishlist.Services.GiftService
 {
     public interface IGiftService
     {
-        Task SaveGiftAsync(AddGiftRequest addGiftRequest);
+        Task SaveGiftAsync(AddGiftWithDataRequest addGiftWithDataRequest);
         Task AddImageUriToGiftAsync(long giftId, CloudBlockBlob blob);
         Task<Gift> GetGiftByIdAsync(long giftId);
+        Task SaveGiftFromArukeresoAsync(AddGiftWithUrlRequest addGiftWithUrlRequest);
     }
 }
