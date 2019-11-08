@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using wishlist.Models;
 using wishlist.Models.RequestModels.Event;
 using wishlist.Services;
 using wishlist.Services.EventService;
@@ -24,34 +25,76 @@ namespace wishlist.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add(long id)
+        public async Task<IActionResult> AddWithUrl(long id)
         {
             if (!await eventService.ValidateAccessAsync(id, User))
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
-            AddGiftRequest addGiftRequest = new AddGiftRequest()
+            AddGiftWithUrlRequest addGiftWithUrlRequest = new AddGiftWithUrlRequest()
             {
-                EventId = id
+                EventId = id,
+                Quantity = 1
             };
-            return View(addGiftRequest);
+            return View(addGiftWithUrlRequest);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddWithData(long id)
+        {
+            if (!await eventService.ValidateAccessAsync(id, User))
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+
+            AddGiftWithDataRequest addGiftWithDataRequest = new AddGiftWithDataRequest()
+            {
+                EventId = id,
+                Quantity = 1
+            };
+            return View(addGiftWithDataRequest);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddGiftRequest addGiftRequest)
+        public async Task<IActionResult> AddWithData(AddGiftWithDataRequest addGiftWithDataRequest)
         {
-            if (!await eventService.ValidateAccessAsync(addGiftRequest.EventId, User))
+            if (!await eventService.ValidateAccessAsync(addGiftWithDataRequest.EventId, User))
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
             if (ModelState.IsValid)
             {
-                await giftService.SaveGiftAsync(addGiftRequest);
-                return RedirectToAction(nameof(EventController.Show), "Show", new { id = addGiftRequest.EventId });
+                await giftService.SaveGiftAsync(addGiftWithDataRequest);
+                return RedirectToAction(nameof(EventController.Show), "Event", new { id = addGiftWithDataRequest.EventId });
             }
-            return View(addGiftRequest);
+            return View(addGiftWithDataRequest);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SelectGift(long id)
+        {
+            var user = User;
+            var gift = await giftService.GetGiftByIdAsync(id);
+            await giftService.SelectGiftByUserAsync(gift, user);
+            return RedirectToAction(nameof(EventController.Show), "Event", new {id = gift.Event.EventId});
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddWithUrl(AddGiftWithUrlRequest addGiftWithUrlRequest)
+        {
+            if (!await eventService.ValidateAccessAsync(addGiftWithUrlRequest.EventId, User))
+            {
+                return RedirectToAction(nameof(EventController.Show), "Show");
+            }
+
+            if (ModelState.IsValid)
+            {
+                await giftService.SaveGiftFromArukeresoAsync(addGiftWithUrlRequest);
+                return RedirectToAction(nameof(EventController.Show), "Event", new { id = addGiftWithUrlRequest.EventId });
+            }
+            return View(addGiftWithUrlRequest);
         }
     }
 }

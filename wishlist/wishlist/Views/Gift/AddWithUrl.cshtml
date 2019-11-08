@@ -1,0 +1,37 @@
+﻿@model AddGiftWithUrlRequest
+@{
+    ViewData["Action"] = "AddWithUrl";
+}
+<h1 class="black">Add gift</h1>
+<form asp-controller="Gift" asp-action="@ViewData["Action"]" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group black search">
+        <h4>Insert link from Árukereső</h4>
+        <a href="https://www.arukereso.hu/" target="_blank">
+            <img src="~/img/other/arukereso.png" width="150" height="40" />
+        </a>
+        <input asp-for="GiftUrl">
+        <span asp-validation-for="GiftUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group black">
+        <label asp-for="Quantity" class="font-weight-bold">Quantity</label><br />
+        <input asp-for="Quantity">
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <div>
+        <input type="hidden" asp-for="EventId" value="@Model.EventId">
+    </div>
+    <button type="submit" class="btn btn-primary">Add gift</button>
+</form>
+<br />
+<form asp-controller="Event" asp-action="Show" asp-route-id="@Model.EventId" method="get">
+    <button type="submit" class="btn btn-info search">Cancel</button>
+</form>
+<br />
+<br />
+<form asp-controller="Gift" asp-action="AddWithData" asp-route-id="@Model.EventId" method="get">
+    <button type="submit" class="btn btn-warning">Add gift manually</button>
+</form>

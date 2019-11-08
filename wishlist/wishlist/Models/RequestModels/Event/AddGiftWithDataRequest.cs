@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace wishlist.Models.RequestModels.Event
 {
-    public class AddGiftRequest
+    public class AddGiftWithDataRequest
     {
         [Required]
         public string Name { get; set; }
@@ -15,8 +15,6 @@ namespace wishlist.Models.RequestModels.Event
         [Required]
         public long Price { get; set; }
 
-        public string GiftUrl { get; set; }
-        
         [Required]
         public int Quantity { get; set; }
 
