@@ -96,7 +96,6 @@ namespace wishlist.Services.GiftService
             }
             catch (Exception e)
             {
-                var a = e.Message;
             }
         }
     }
