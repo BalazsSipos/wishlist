@@ -103,20 +103,20 @@ span.google-buttonText {
 
 /* Cards */
 .card-horizontal {
-  display: flex;
-  flex: 1 1 auto;
+    display: flex;
+    flex: 1 1 auto;
 }
 
 .card {
-  border-radius: 10px;
-  border: thin solid #888;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 3px 0px;
-  background-color: white;
+    border-radius: 10px;
+    border: thin solid #888;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 3px 0px;
+    background-color: white;
 }
 
-.col-md-4 {
-  padding-top: 10px;
-  padding-bottom: 10px;
+.col-md-6 {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .card:hover {
@@ -126,7 +126,7 @@ span.google-buttonText {
 .card-body {
     padding-left: 10px;
     padding-right: 5px;
-    text-align: center
+    text-align: left;
 }
 
 .menu-button {
@@ -150,10 +150,51 @@ span.google-buttonText {
 }
 
 .img-square-wrapper {
-  text-align: left;
-  display: inline-flex;
+    text-align: left;
+    display: inline-flex;
 }
 
 h1 {
-  font-size: 60px;
+    font-size: 60px;
+}
+
+.white {
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+.black {
+    color: black;
+    text-shadow: 1px 1px white;
+}
+
+/* Input text box */
+.search input[type="text"] {
+    background: #fff;
+    border-color: #bbb;
+    color: #555;
+    box-sizing: border-box;
+    width: 86%;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    outline: 0;
+    font-family: inherit;
+    font-size: 25px;
+}
+
+    /* Text fields' focus effect */
+    .search input[type="text"]:focus {
+        border-color: #FF0004;
+    }
+
+.search input[type="submit"] {
+    background-color: #FF0004;
+    border-color: transparent;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-radius: 5px;
+    border-width: 10px 5px;
+    font-size: 27px;
 }
