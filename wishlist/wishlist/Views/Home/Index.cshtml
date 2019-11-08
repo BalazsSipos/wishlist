@@ -4,11 +4,11 @@
 </head>
 @if (User.Identity.IsAuthenticated)
 {
-    <h1>Upcoming events</h1>
+    <h1 class="black">Upcoming events</h1>
 }
 else
 {
-    <h1>Please sign in!</h1>
+    <h1 class="black">Please sign in!</h1>
 }
 
 <div class="row">
@@ -29,7 +29,7 @@ else
             <div class="card">
                 <div class="card-horizontal">
                     <div class="img-square-wrapper">
-                        <img src="#" width="300" height="150" alt="Card image cap">
+                        <img src="@Html.DisplayFor(modelGift => events.PhotoUrl)" width="300" height="150" alt="Card image cap">
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">@Html.DisplayFor(modelEvent => events.Name)</h4>

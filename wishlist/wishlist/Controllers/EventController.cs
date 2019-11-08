@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using wishlist.Models.RequestModels.Event;
 using wishlist.Services;
@@ -9,6 +10,7 @@ using wishlist.Services.EventService;
 
 namespace wishlist.Controllers
 {
+    [Authorize]
     public class EventController : Controller
     {
         private readonly IEventService eventService;
