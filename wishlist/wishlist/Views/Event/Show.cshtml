@@ -1,16 +1,33 @@
 @model Event
 
+@{
+    switch (Model.EventType.Name)
+    {
+        case "Christmas":
+            Layout = "_LayoutChristmas";
+            break;
+        case "Birthday":
+            Layout = "_LayoutBirthday";
+            break;
+        case "Wedding":
+            Layout = "_LayoutWedding";
+            break;
+        default:
+            Layout = "_Layout";
+            break;
+    }
+}
+
 <div>
     <div>
         <h1>@Model.Name</h1>
         <h4><i class="fas fa-calendar-day"></i> @Model.EventDate.Day/@Model.EventDate.Month/@Model.EventDate.Year</h4>
-        <h4><i class="fas fa-clock"></i> @Model.EventDate.Hour h</h4>
         <h4><i class="fas fa-map-marked"></i> @Model.Address</h4>
         <h4><i class="fas fa-comment-dots"></i> @Model.Message</h4>
     </div>
-<br />
-<h2>Gifts</h2>
-<br />
+    <br />
+    <h2>Gifts</h2>
+    <br />
     <div class="row">
         @foreach (var gift in Model.Gifts)
         {
@@ -18,12 +35,12 @@
                 <div class="card">
                     <div class="card-horizontal">
                         <div class="img-square-wrapper">
-                            <img src=@Html.DisplayFor(modelGift => gift.PhotoUrl) width="300" height="150" alt="Card image cap">
+                            <img src="@gift.PhotoUrl" width="300" height="150" alt="Card image cap">
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">@Html.DisplayFor(modelGift => gift.Name)</h4>
-                            <p class="card-text">Unit price: @Html.DisplayFor(modelGift => gift.Price)</p>
-                            <p class="card-text p-3 mb-2 bg-light text-dark">Quantity: @Html.DisplayFor(modelGift => gift.Quantity)</p>
+                            <h4 class="card-title">@gift.Name</h4>
+                            <p class="card-text">Unit price: @gift.Price</p>
+                            <p class="card-text p-3 mb-2 bg-light text-dark">Quantity: @gift.Quantity</p>
                             <div class="menu-button">
                                 <form asp-controller="Gift" asp-action="SelectGift" method="post" asp-route-Id="@gift.GiftId">
                                     <button type="submit" class="btn btn-success">Select gift</button>
