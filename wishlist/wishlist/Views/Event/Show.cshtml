@@ -1,5 +1,6 @@
 @model Event
 
+
 @{
     var color = "white";
     switch (Model.EventType.Name)
@@ -67,4 +68,29 @@
             </div>
         }
     </div>
+    <h2 class="black">Invited people</h2>
+    <table class="table black">
+        <thead class="thead-dark">
+            <tr>
+                <th>Email address</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        @foreach (var invitation in Model.Invitations)
+        {
+            <tr>
+                <td>@invitation.InvitedEmail</td>
+                <td>@invitation.IsEmailSent</td>
+            </tr>
+        }
+    </table>
+
+    <h2 class="black">Add invitation email</h2>
+
+    <form asp-controller="Invitation" asp-action="AddInvitation" method="post" asp-route-Id="@Model.EventId">
+        <div class="form-group form-check">
+            <input type="email" class="form-check-input" name="InvitedEmail">
+        </div>
+        <button type="submit" class="btn btn-primary">Add email invitation</button>
+    </form>
 </div>
