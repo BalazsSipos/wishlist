@@ -99,6 +99,7 @@
     <button type="submit" class="btn btn-primary">Add email invitation</button>
   </form>
   <form asp-controller="Event" asp-action="SendMail" method="post" asp-route-Id="@Model.EventId">
+    <br />
     <span>Sent to All?</span> @Html.CheckBox("sendAll")
     <button type="submit" class="btn btn-primary">Send e-mail to all buyers</button>
   </form>
