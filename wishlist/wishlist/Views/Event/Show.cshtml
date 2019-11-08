@@ -2,100 +2,100 @@
 
 
 @{
-    var color = "white";
-    switch (Model.EventType.Name)
-    {
-        case "Christmas":
-            Layout = "_LayoutChristmas";
-            color = "white";
-            break;
-        case "Birthday":
-            Layout = "_LayoutBirthday";
-            color = "black";
-            break;
-        case "Wedding":
-            Layout = "_LayoutWedding";
-            color = "black";
-            break;
-        default:
-            Layout = "_Layout";
-            color = "white";
-            break;
-    }
+  var color = "white";
+  switch (Model.EventType.Name)
+  {
+    case "Christmas":
+      Layout = "_LayoutChristmas";
+      color = "white";
+      break;
+    case "Birthday":
+      Layout = "_LayoutBirthday";
+      color = "black";
+      break;
+    case "Wedding":
+      Layout = "_LayoutWedding";
+      color = "black";
+      break;
+    default:
+      Layout = "_Layout";
+      color = "white";
+      break;
+  }
 }
 
 <div>
-    <div class=@color>
-        <h1>@Model.Name</h1>
-        <h4><i class="fas fa-calendar-day"></i> @Model.EventDate.Day/@Model.EventDate.Month/@Model.EventDate.Year</h4>
-        <h4><i class="fas fa-map-marked"></i> @Model.Address</h4>
-        <h4><i class="fas fa-comment-dots"></i> @Model.Message</h4>
-    </div>
-    <br />
-    <h1 class=@color>Gifts</h1>
-    <br />
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-horizontal">
-                    <div class="img-square-wrapper">
-                        <a asp-controller="Gift" asp-action="AddWithUrl" asp-route-Id="@Model.EventId">
-                            <img src="~/img/button_add/addnewgift.png" width="550" height="150" alt="Add new gift">
-                        </a>
-                    </div>
-                </div>
-            </div>
+  <div class=@color>
+    <h1 class="@color">@Model.Name</h1>
+    <h4><i class="fas fa-calendar-day"></i> @Model.EventDate.Day/@Model.EventDate.Month/@Model.EventDate.Year</h4>
+    <h4><i class="fas fa-map-marked"></i> @Model.Address</h4>
+    <h4><i class="fas fa-comment-dots"></i> @Model.Message</h4>
+  </div>
+  <br />
+  <h1 class=@color>Gifts</h1>
+  <br />
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-horizontal">
+          <div class="img-square-wrapper">
+            <a asp-controller="Gift" asp-action="AddWithUrl" asp-route-Id="@Model.EventId">
+              <img src="~/img/button_add/addnewgift.png" width="550" height="150" alt="Add new gift">
+            </a>
+          </div>
         </div>
-        @foreach (var gift in Model.Gifts)
-        {
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-horizontal">
-                        <div class="img-square-wrapper">
-                            <a href=@gift.GiftUrl target="_blank">
-                                <img src=@gift.PhotoUrl width="300" height="150" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <a href=@gift.GiftUrl target="_blank">
-                                <h4 class="card-title">@gift.Name</h4>
-                            </a>
-                            <p class="card-text">Unit price: @gift.Price Ft</p>
-                            <p class="card-text">Quantity: @gift.Quantity</p>
-                            <div class="menu-button">
-                                <form asp-controller="Gift" asp-action="SelectGift" method="post" asp-route-Id="@gift.GiftId">
-                                    <button type="submit" class="btn btn-success">Select gift</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
+      </div>
     </div>
-    <h2 class="@color">Invited people</h2>
-    <table class="table @color">
-        <thead class="thead-dark">
-            <tr>
-                <th>Email address</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        @foreach (var invitation in Model.Invitations)
-        {
-            <tr>
-                <td>@invitation.InvitedEmail</td>
-                <td>@invitation.IsEmailSent</td>
-            </tr>
-        }
-    </table>
-
-    <h2 class=@color>Add invitation email</h2>
-
-    <form asp-controller="Invitation" asp-action="AddInvitation" method="post" asp-route-Id="@Model.EventId">
-        <div class="form-group form-check">
-            <input type="email" class="form-check-input" name="InvitedEmail">
+    @foreach (var gift in Model.Gifts)
+    {
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <a href=@gift.GiftUrl target="_blank">
+                <img src=@gift.PhotoUrl width="300" height="150" alt="Card image cap">
+              </a>
+            </div>
+            <div class="card-body">
+              <a href=@gift.GiftUrl target="_blank">
+                <h4 class="card-title">@gift.Name</h4>
+              </a>
+              <p class="card-text">Unit price: @gift.Price Ft</p>
+              <p class="card-text">Quantity: @gift.Quantity</p>
+              <div class="menu-button">
+                <form asp-controller="Gift" asp-action="SelectGift" method="post" asp-route-Id="@gift.GiftId">
+                  <button type="submit" class="btn btn-success">Select gift</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add email invitation</button>
-    </form>
+      </div>
+    }
+  </div>
+  <h2 class="@color">Invited people</h2>
+  <table class="table @color">
+    <thead class="thead-dark">
+      <tr>
+        <th>Email address</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    @foreach (var invitation in Model.Invitations)
+    {
+      <tr>
+        <td>@invitation.InvitedEmail</td>
+        <td>@invitation.IsEmailSent</td>
+      </tr>
+    }
+  </table>
+
+  <h2 class=@color>Add invitation email</h2>
+
+  <form asp-controller="Invitation" asp-action="AddInvitation" method="post" asp-route-Id="@Model.EventId">
+    <div class="form-group form-check">
+      <input type="email" class="form-check-input" name="InvitedEmail">
+    </div>
+    <button type="submit" class="btn btn-primary">Add email invitation</button>
+  </form>
 </div>
