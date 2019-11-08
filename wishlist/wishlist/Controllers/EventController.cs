@@ -48,11 +48,11 @@ namespace wishlist.Controllers
             return View(await eventService.BuildEmptyAddEventRequestAsync(addEventRequest));
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> SendMail(long id)
         {
             await emailService.SendMailToBuyers(id);
-            return RedirectToAction(nameof(EventController.Show), "Show", new { id = id });
+            return RedirectToAction(nameof(EventController.Show), "Event", new { id = id });
         }
     }
 }
