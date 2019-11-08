@@ -51,6 +51,13 @@ namespace wishlist.Services.EventService
             var eventList = await applicationDbContext.Events.Include(e => e.Gifts).AsQueryable().Where(e => e.AppUser.UserName == managerName).OrderBy(e => e.Name).ToListAsync();
             return eventList;
         }
+        
+        public async Task<Event> FindEventByGiftId(long id)
+        {
+            var eventItem = await applicationDbContext.Events.Include(e => e.Gifts).AsQueryable()
+                .FirstAsync(e => e.Gifts[0].GiftId == id);
+            return eventItem;
+        }
 
         public async Task<AddEventRequest> BuildEmptyAddEventRequestAsync(AddEventRequest addEventRequest)
         {
@@ -69,7 +76,7 @@ namespace wishlist.Services.EventService
                 return addEventRequest;
             }
         }
-
+        
         public async Task SaveEventAsync(AddEventRequest addEventRequest, ClaimsPrincipal user)
         {
             var eventItem = mapper.Map<AddEventRequest, Event>(addEventRequest);

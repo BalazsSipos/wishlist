@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using wishlist.Models;
 using wishlist.Models.RequestModels.Event;
 using wishlist.Services.BlobService;
 using Microsoft.Azure.Storage.Blob;
+using wishlist.Models.Identity;
+using wishlist.Services.User;
 using System.Net.Http;
 using HtmlAgilityPack;
 
@@ -18,12 +21,14 @@ namespace wishlist.Services.GiftService
         private readonly ApplicationDbContext applicationDbContext;
         private readonly IMapper mapper;
         IBlobStorageService blobStorageService;
+        private readonly IUserService userService;
 
-        public GiftService(ApplicationDbContext applicationDbContext, IMapper mapper, IBlobStorageService blobStorageService)
+        public GiftService(ApplicationDbContext applicationDbContext, IMapper mapper, IBlobStorageService blobStorageService, IUserService userService)
         {
             this.applicationDbContext = applicationDbContext;
             this.mapper = mapper;
             this.blobStorageService = blobStorageService;
+            this.userService = userService;
         }
 
         public async Task SaveGiftAsync(AddGiftWithDataRequest addGiftWithDataRequest)
@@ -57,6 +62,17 @@ namespace wishlist.Services.GiftService
             return gift;
         }
 
+        public async Task SelectGiftByUserAsync(Gift gift, ClaimsPrincipal user)
+        {
+            var appUser = await userService.FindUserByNameOrEmailAsync(user.Identity.Name);
+            var userGift = new UserGift()
+            {
+                Gift = gift,
+                BuyerUser = appUser
+            };
+            await applicationDbContext.UserGifts.AddAsync(userGift);
+            await applicationDbContext.SaveChangesAsync();
+        }
         public async Task SaveGiftFromArukeresoAsync(AddGiftWithUrlRequest addGiftWithUrlRequest)
         {
             HttpClient client = new HttpClient();
